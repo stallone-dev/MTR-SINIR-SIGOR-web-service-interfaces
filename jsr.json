@@ -1,0 +1,13 @@
+{
+    "name": "@stallone-dev/types/mtr-web-service",
+    "version": "0.1.0",
+    "exports": "./index.d.ts",
+
+    "publish": {
+      "include": [
+        "LICENSE",
+        "README.md",
+        "types/*.d.ts"
+      ]
+    } 
+  }
