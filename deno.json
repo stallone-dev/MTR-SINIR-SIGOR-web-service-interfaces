@@ -3,10 +3,22 @@
     "version": "0.1.0",
     "exports": "./mod.ts",
 
+    "publish": {
+        "exclude": [".editorconfig", ".github"]
+    },
+
     "compilerOptions": {
         "declaration": true,
         "emitDeclarationOnly": true,
         "allowImportingTsExtensions": true,
         "isolatedModules": false
+    },
+
+    "lint": {
+        "rules": {
+            "tags": ["recommended"],
+            "include": ["ban-untagged-todo"],
+            "exclude": ["no-unused-vars"]
+        }
     }
 }
