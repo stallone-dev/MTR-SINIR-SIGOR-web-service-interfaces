@@ -1,4 +1,4 @@
-import { INTERNAL_ } from "../internal.ts";
+import { INTERNAL_ } from "../internal.d";
 
 /**
  * Interfaces do corpo das requisições feitas para a API

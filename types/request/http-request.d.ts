@@ -1,4 +1,4 @@
-import { INTERNAL_ } from "../internal.ts";
+import { INTERNAL_ } from "../internal.d";
 
 /**
  * Modelos-base das requisições e respostas HTTP da API

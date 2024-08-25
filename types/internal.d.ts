@@ -1,7 +1,7 @@
-import { CDF_ } from "./internal/cdf.ts";
-import { MTR_ } from "./internal/mtr.ts";
-import { RESIDUOS_ } from "./internal/residuos.ts";
-import { AUTH_ } from "./internal/auth.ts";
+import { CDF_ } from "./internal/cdf.d";
+import { MTR_ } from "./internal/mtr.d";
+import { RESIDUOS_ } from "./internal/residuos.d";
+import { AUTH_ } from "./internal/auth.d";
 
 /**
  * Tipagem dos módulos internos da API

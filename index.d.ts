@@ -1,5 +1,5 @@
-import { INTERNAL_ } from "./types/internal.ts";
-import { REQUEST_ } from "./types/request.ts";
+import { INTERNAL_ } from "./types/internal.d";
+import { REQUEST_ } from "./types/request.d";
 
 /**
  * Interfaces para estruturação e análise da API WebService para controle de MTRs do SINIR/SIGOR

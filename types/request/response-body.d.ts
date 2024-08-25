@@ -1,4 +1,4 @@
-import { INTERNAL_ } from "../internal.ts";
+import { INTERNAL_ } from "../internal.d";
 
 /**
  * Interfaces para mapeamento das respostas enviadas pela API

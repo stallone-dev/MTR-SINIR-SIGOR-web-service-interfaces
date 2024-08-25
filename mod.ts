@@ -1,1 +1,1 @@
-export { MtrWebService } from "./index.ts";
+export { MtrWebService } from "./index.d";

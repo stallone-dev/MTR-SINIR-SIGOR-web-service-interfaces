@@ -1,7 +1,7 @@
-import { END_POINT_ } from "./request/end-point.ts";
-import { HTTP_MODEL_ } from "./request/http-request.ts";
-import { REQUEST_BODY_ } from "./request/request-body.ts";
-import { RESPONSE_BODY_ } from "./request/response-body.ts";
+import { END_POINT_ } from "./request/end-point.d";
+import { HTTP_MODEL_ } from "./request/http-request.d";
+import { REQUEST_BODY_ } from "./request/request-body.d";
+import { RESPONSE_BODY_ } from "./request/response-body.d";
 
 /**
  * Centro de interfaces para controle do fluxo de requisições HTTP da API

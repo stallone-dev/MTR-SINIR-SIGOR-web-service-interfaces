@@ -1,0 +1,12 @@
+{
+    "name": "@stallone-dev/types-mtr-web-service",
+    "version": "0.1.0",
+    "exports": "./mod.ts",
+
+    "compilerOptions": {
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "allowImportingTsExtensions": true,
+        "isolatedModules": false
+    }
+}

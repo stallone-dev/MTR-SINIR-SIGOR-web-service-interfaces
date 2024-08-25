@@ -1,4 +1,4 @@
-import type { RESIDUOS_ } from "./residuos.ts";
+import type { RESIDUOS_ } from "./residuos.d";
 
 /**
  * Especificações do Manifesto de Transporte de Residuos (MTR)
