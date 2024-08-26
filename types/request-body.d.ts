@@ -1,4 +1,5 @@
-import { INTERNAL_ } from "../internal.d";
+import { INTERNAL_ } from "./internal.d";
+import { AUTH_ } from "./authentitcation.d";
 
 /**
  * Interfaces do corpo das requisições feitas para a API
@@ -7,7 +8,7 @@ export namespace REQUEST_BODY_ {
     /**
      * Interface para requisição de um Token de acesso
      */
-    export interface gerarToken extends INTERNAL_.auth.requisicaoToken {}
+    export interface gerarToken extends AUTH_.request {}
 
     /**
      * Interface para cancelamento de um MTR

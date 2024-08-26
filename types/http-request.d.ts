@@ -1,5 +1,3 @@
-import { INTERNAL_ } from "../internal.d";
-
 /**
  * Modelos-base das requisições e respostas HTTP da API
  */
@@ -7,21 +5,21 @@ export namespace HTTP_MODEL_ {
     /**
      * Interface geral das respostas retorandas pela API
      */
-    export interface respostaAPI<contexto> {
+    export interface response {
         mensagem: string;
         erro: string | number | boolean;
-        objetoResposta: contexto | contexto[];
+        objetoResposta: any | any[];
     }
 
     /**
      * Interface geral de requisição para a API
      */
-    export interface requisicaoAPI<contexto> {
+    export interface request {
         method: "POST" | "GET";
         headers: {
             "Content-Type": "application/json";
-            Authorization: INTERNAL_.auth.tokenDeAcesso;
+            Authorization?: string;
         };
-        body: contexto;
+        body: string | null;
     }
 }

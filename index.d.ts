@@ -1,5 +1,8 @@
-import { INTERNAL_ } from "./types/internal.d";
-import { REQUEST_ } from "./types/request.d";
+import { END_POINT_ } from "./types/end-points.d";
+import { AUTH_ } from "./types/authentitcation.d";
+import { REQUEST_BODY_ } from "./types/request-body.d";
+import { RESPONSE_BODY_ } from "./types/response-body.d";
+import { HTTP_MODEL_ } from "./types/http-request.d";
 
 /**
  * Interfaces para estruturação e análise da API WebService para controle de MTRs do SINIR/SIGOR
@@ -10,6 +13,9 @@ import { REQUEST_ } from "./types/request.d";
  * @module
  */
 export namespace MtrWebService {
-    export import interno = INTERNAL_;
-    export import request = REQUEST_;
+    export import auth = AUTH_;
+    export import requestBody = REQUEST_BODY_;
+    export import responseBody = RESPONSE_BODY_;
+    export import httpModel = HTTP_MODEL_;
+    export import END_POINT = END_POINT_;
 }

@@ -1,11 +1,12 @@
-import { INTERNAL_ } from "../internal.d";
+import { INTERNAL_ } from "./internal.d";
+import { AUTH_ } from "./authentitcation.d";
 
 /**
  * Interfaces para mapeamento das respostas enviadas pela API
  */
 export namespace RESPONSE_BODY_ {
     /** Token de acesso para utilização nas APIs */
-    export type gerarToken = INTERNAL_.auth.tokenDeAcesso;
+    export type gerarToken = AUTH_.token;
     /** Buffer de bytes contendo o PDF do MTR */
     export type downloadMtr = ArrayBuffer;
     /** Buffer de bytes contendo o PDF do CDF */
