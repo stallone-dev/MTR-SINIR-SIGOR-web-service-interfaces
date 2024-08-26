@@ -3,7 +3,7 @@
 [![jsr.io/@stallone-dev/types-mtr-web-service](https://jsr.io/badges/@stallone-dev/types-mtr-web-service)](https://jsr.io/@stallone-dev/types-mtr-web-service)
 [![jsr.io/@stallone-dev/types-mtr-web-service score](https://jsr.io/badges/@stallone-dev/types-mtr-web-service/score)](https://jsr.io/@stallone-dev/types-mtr-web-service)
 
-Conjunto de interface `typescript` para uso do sistema WebService do SINIR/SIGOR para controle de MTRs.
+Conjunto de interfaces `typescript` para mapeamento do sistema WebService do SINIR/SIGOR para controle de MTRs.
 
 Baseado na versão: `SINIR - 1.0.6 - ago/24`
 
