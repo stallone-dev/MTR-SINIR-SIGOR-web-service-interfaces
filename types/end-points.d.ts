@@ -5,8 +5,10 @@ export enum END_POINT_ {
     GERAR_TOKEN = "gettoken",
     GERAR_MTR = "salvarManifestoLote",
     GERAR_CDF = "emiteCDF",
+    GERAR_MTR_COMPLEMENTAR = "salvarManifestoComplementar",
 
     CANCELAR_MTR = "cancelarManifesto",
+    CANCELAR_LOTE_MTR = "cancelarManifestoLote",
 
     LISTAR_CLASSES_RESIDUOS = "retornaListaClasse",
     LISTAR_UNIDADES_MEDIDA = "retornaListaUnidade",
@@ -19,8 +21,10 @@ export enum END_POINT_ {
     DOWNLOAD_CDF = "downloadCertificado",
 
     CONSULTAR_MTR = "retornaManifesto",
+    CONSULTAR_MTR_POR_SEU_CODIGO = "retornaManifestoSeuCodigo",
     CONSULTAR_CLASSES_POR_COD_IBAMA = "retornaListaClassePorResiduo",
-    CONSULTAR_ACONDICIONAMENTOS_POR_ESTADO_FISICO = "retornaListaAcondicionamentoPorEstadoFisico",
+    CONSULTAR_ACONDICIONAMENTOS_POR_ESTADO_FISICO =
+        "retornaListaAcondicionamentoPorEstadoFisico",
 
     RECEBER_LOTE_DE_MTRS = "receberManifestoLote",
 

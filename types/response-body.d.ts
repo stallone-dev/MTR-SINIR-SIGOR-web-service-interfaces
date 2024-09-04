@@ -1,5 +1,5 @@
 import { INTERNAL_ } from "./internal.d";
-import { AUTH_ } from "./authentitcation.d";
+import { AUTH_ } from "./auth.d";
 
 /**
  * Interfaces para mapeamento das respostas enviadas pela API
@@ -13,6 +13,14 @@ export namespace RESPONSE_BODY_ {
     export type downloadCdf = ArrayBuffer;
     /** Confirmação do resultado do pedido de cancelamento */
     export type cancelarMtr = string;
+    /** Confirmação do resultado do pedido de cancelamento @SIGOR_ONLY */
+    export type cancelarLoteMtr = string[];
+
+    /**
+     * Interface para requisição de MTRs pelo 'seuCodigo"
+     * @SIGOR_ONLY
+     */
+    export interface retornaManifestoSeuCodigo extends consultarMtr {}
 
     // Consultas para levantamento das classificaões IBAMA
 
@@ -67,6 +75,30 @@ export namespace RESPONSE_BODY_ {
         extends Required<INTERNAL_.residuo.acondicionamento[]> {}
 
     // Resultados de requisições de comando enviados
+
+    /**
+     * Resultado da geração de manifesto complementar
+     * @SISGR_ONLY
+     */
+    export interface salvarManifestoComplementar {
+        restResponseValido: boolean;
+        restResponseMensagem: null | string;
+        manifestoComplementar: string;
+        transportador: {
+            restResponseValido: boolean;
+            restResponseMensagem: null | string;
+            cpfCnpj: string;
+            unidade: number;
+        };
+        nomeMotorista: string;
+        placaVeiculo: string;
+        observacoes: string;
+        listaManifesto: {
+            restResponseValido: boolean;
+            restResponseMensagem: null | string;
+            manNumero: string;
+        }[];
+    }
 
     /**
      * Interface do retorno obtido ao consultar uma MTR
