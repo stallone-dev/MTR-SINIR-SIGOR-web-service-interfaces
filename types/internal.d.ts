@@ -1,6 +1,6 @@
-import { CDF_ } from "./internal/cdf.d";
-import { MTR_ } from "./internal/mtr.d";
-import { RESIDUOS_ } from "./internal/residuos.d";
+import { CDF_ } from "./internal/cdf.d.ts";
+import { MTR_ } from "./internal/mtr.d.ts";
+import { RESIDUOS_ } from "./internal/residuos.d.ts";
 /**
  * Relação dos tipos internos da API
  *

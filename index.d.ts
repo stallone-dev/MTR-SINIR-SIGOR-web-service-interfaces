@@ -1,8 +1,8 @@
-import { END_POINT_ } from "./types/end-points.d";
-import { AUTH_ } from "./types/auth.d";
-import { REQUEST_BODY_ } from "./types/request-body.d";
-import { RESPONSE_BODY_ } from "./types/response-body.d";
-import { HTTP_MODEL_ } from "./types/http-request.d";
+import { END_POINT_ } from "./types/end-points.ts";
+import { AUTH_ } from "./types/auth.d.ts";
+import { REQUEST_BODY_ } from "./types/request-body.d.ts";
+import { RESPONSE_BODY_ } from "./types/response-body.d.ts";
+import { HTTP_MODEL_ } from "./types/http-request.d.ts";
 
 /**
  * Interfaces para estruturação e análise da API WebService para controle de MTRs do SINIR/SIGOR

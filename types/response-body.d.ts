@@ -1,5 +1,5 @@
-import { INTERNAL_ } from "./internal.d";
-import { AUTH_ } from "./auth.d";
+import { INTERNAL_ } from "./internal.d.ts";
+import { AUTH_ } from "./auth.d.ts";
 
 /**
  * Interfaces para mapeamento das respostas enviadas pela API
