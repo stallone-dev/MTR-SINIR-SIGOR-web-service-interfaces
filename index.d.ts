@@ -1,4 +1,4 @@
-import { END_POINT_ } from "./types/end-points.ts";
+import { END_POINT_ } from "./end-points.ts";
 import { AUTH_ } from "./types/auth.d.ts";
 import { REQUEST_BODY_ } from "./types/request-body.d.ts";
 import { RESPONSE_BODY_ } from "./types/response-body.d.ts";
