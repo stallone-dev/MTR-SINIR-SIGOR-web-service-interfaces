@@ -1,6 +1,6 @@
 {
     "name": "@stallone-dev/types-mtr-web-service",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "exports": "./mod.ts",
 
     "publish": {
@@ -20,5 +20,14 @@
             "include": ["ban-untagged-todo"],
             "exclude": ["no-unused-vars"]
         }
+    },
+
+    "fmt": {
+        "useTabs": false,
+        "lineWidth": 80,
+        "indentWidth": 4,
+        "semiColons": true,
+        "singleQuote": false,
+        "proseWrap": "preserve"
     }
 }

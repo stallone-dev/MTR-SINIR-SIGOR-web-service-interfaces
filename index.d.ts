@@ -1,5 +1,5 @@
 import { END_POINT_ } from "./types/end-points.d";
-import { AUTH_ } from "./types/authentitcation.d";
+import { AUTH_ } from "./types/auth.d";
 import { REQUEST_BODY_ } from "./types/request-body.d";
 import { RESPONSE_BODY_ } from "./types/response-body.d";
 import { HTTP_MODEL_ } from "./types/http-request.d";
