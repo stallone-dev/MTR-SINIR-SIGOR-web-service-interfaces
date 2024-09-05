@@ -1,7 +1,9 @@
 /**
- * Lista de end-points da API para incorportação no HTML
+ * Lista de end-points da API para incorportação na requisição REST
+ * @module
+ * @version 1.15.0 - ago/24
  */
-export enum END_POINT_ {
+export enum API_ROUTE {
     GERAR_TOKEN = "gettoken",
     GERAR_MTR = "salvarManifestoLote",
     GERAR_CDF = "emiteCDF",
