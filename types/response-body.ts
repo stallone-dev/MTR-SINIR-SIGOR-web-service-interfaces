@@ -125,11 +125,11 @@ interface consultarMtr {
     manNumero: string;
     manData: number;
     manResponsavel: string;
-    manDataEXpedicao: number;
-    manNomeMotorista: string | null;
-    manPlacaVeiculo: string | null;
-    manObservacao: string | null;
-    manJustificativaCancelamento: string | null;
+    manDataExpedicao: number | null;
+    manNomeMotorista: string;
+    manPlacaVeiculo: string;
+    manObservacao: string;
+    manJustificativaCancelamento: string;
     estado: {
         estCodigo: number;
         estAbreviacao: string;
@@ -150,7 +150,7 @@ interface consultarMtr {
         parCnpj: string;
     };
     parceiroArmazenadorTemporario: {
-        parCodigo: number;
+        parCodigo: number | null;
         parDescricao: string;
         parCnpj: string;
     };
@@ -158,10 +158,12 @@ interface consultarMtr {
         simCodigo: number;
         simDescricao: string;
         simOrdem: number;
+        simDataRecebimento: string;
     };
+    dataRecebimentoAT: string;
     listaManifestoResiduo: MTR_.listaDeResiduos[];
     cdfNumero: number | null;
-    manNumeroEstadual: string | null;
+    manNumeroEstadual: string;
 }
 
 /**

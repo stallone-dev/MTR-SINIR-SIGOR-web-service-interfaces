@@ -25,6 +25,7 @@ interface quantidade {
 interface classe {
     claCodigo: number;
     claDescricao?: string;
+    claResolução?: string;
     claCodigoNovo?: number;
 }
 
@@ -69,7 +70,7 @@ interface acondicionamento {
  */
 interface codigoIbama {
     resCodigoIbama: string;
-    resDescricao?: string;
+    resDescricao: string;
 }
 
 /**
