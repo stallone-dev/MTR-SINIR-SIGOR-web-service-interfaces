@@ -53,11 +53,11 @@ yarn dlx jsr add @stallone-dev/types-mtr-web-service
 Independente do método de instalação, é importante referenciar dentro do projeto `.ts` como um `import`:
 
 ```ts
-// Importando somente a tipagem
+// Importando somente a tipagem dos módulos da API
 import type { MtrWSType } from "@stallone-dev/types-mtr-web-service/";
 
 // Importando somente as URLs-base da API
-import type { MtrWSBaseURL } from "@stallone-dev/types-mtr-web-service/";
+import { MtrWSBaseURL } from "@stallone-dev/types-mtr-web-service/";
 
 // Importando somente a lista de rotas REST
 import { MtrWSRoute } from "@stallone-dev/types-mtr-web-service/";
@@ -97,13 +97,14 @@ async function getMtrData(
             Authorization: AUTH_TOKEN,
         },
         method: "GET",
-        body: null,
+        body: "",
     };
 
-    const request = new Request(API_PATH, options);
-    const result = (
-        await fetch(request)
-    ).json() as unknown as MtrWSType.httpModel.response;
+    const request = new Request(_URL, options);
+    const response = (await fetch(request)).json();
+
+    /** Consumo da API com transformação direta em JSON */
+    const result = await response as MtrWSType.httpModel.response;
 
     return result.objetoResposta as MtrWSType.responseBody.consultarMtr;
 }
@@ -133,7 +134,7 @@ interface internalRequest<T_request> {
     auth?: MtrWSType.auth.token;
 }
 
-/** Modelo-base para requisições à API */
+/** Modelo-base para construção de requisições à API */
 abstract class ApiRequest {
     protected API_URL: URL;
 
@@ -169,13 +170,13 @@ abstract class ApiRequest {
         };
 
         const request = new Request(_URL, options);
+        const response = (await fetch(request)).json();
 
         /** Consumo da API com transformação direta em JSON */
-        const result = (await fetch(request))
-            .json() as unknown as MtrWSType.httpModel.response;
+        const result = await response as MtrWSType.httpModel.response;
 
         /** Verificação dos erros internos da API */
-        if (result.erro !== null) {
+        if (result.erro !== false) {
             throw new Error(String(result.erro));
         }
 
