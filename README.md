@@ -3,22 +3,22 @@
 [![jsr.io/@stallone-dev/types-mtr-web-service](https://jsr.io/badges/@stallone-dev/types-mtr-web-service)](https://jsr.io/@stallone-dev/types-mtr-web-service)
 [![jsr.io/@stallone-dev/types-mtr-web-service score](https://jsr.io/badges/@stallone-dev/types-mtr-web-service/score)](https://jsr.io/@stallone-dev/types-mtr-web-service)
 
-Kit de ferramentas `typescript` para modelagem de requisições da API [MTR WebService do SINIR/SIGOR](https://cetesb.sp.gov.br/sigor-mtr/web-service/).
+Kit de ferramentas `typescript` para modelagem de requisições para consumo da API [MTR WebService - SINIR/SIGOR](https://cetesb.sp.gov.br/sigor-mtr/web-service/).
 
 Baseado na versão: `SIGOR - 1.15.0 - 21/08/24`
 
 Contém:
 
-- Lista de **URLs de produção** da API, compiladas no `MtrWSBaseURL`
+- Lista de **URLs-base de produção** da API, compiladas no `MtrWSBaseURL`
 - Lista de rotas **REST** da API, compiladas no `MtrWSRoute`
 - Conjunto de **interfaces** da API, reunidas no `MtrWSType`, contendo:
 
-|        Categoria         | Interface                |
-| :----------------------: | :----------------------- |
-|       Autenticação       | `MtrWSType.auth`         |
-|     Interfaces HTTP      | `MtrWSType.httpModel`    |
-| Interfaces de requisição | `MtrWSType.requestBody`  |
-|  Interfaces de resposta  | `MtrWSType.responseBody` |
+|        Categoria         | Interface                  |
+| :----------------------: | :------------------------- |
+|       Autenticação       | `MtrWSType.auth`           |
+|     Interfaces HTTP      | `MtrWSType.httpModel`      |
+| Interfaces de requisição | `MtrWSType.requestConfig`  |
+|  Interfaces de resposta  | `MtrWSType.responseConfig` |
 
 ## Instalação
 
@@ -50,7 +50,7 @@ yarn dlx jsr add @stallone-dev/types-mtr-web-service
 
 ## Aplicação
 
-Independente do método de instalação, é importante referenciar dentro do projeto `.ts` como um `import`:
+Para todos os meios, é importante referenciar dentro do projeto `.ts` como um `import`:
 
 ```ts
 // Importando somente a tipagem dos módulos da API
@@ -86,9 +86,9 @@ async function getMtrData(
     mtr: string,
     AUTH_TOKEN: MtrWSType.auth.token,
     BASE_API_URL: MtrWSBaseURL,
-): Promise<MtrWSType.responseBody.consultarMtr> {
+): Promise<MtrWSType.responseConfig.consultarMTR> {
     /** Modelagem da URL da API */
-    const API_PATH = `${BASE_API_URL}/${MtrWSRoute.CONSULTAR_MTR}/${mtr}`;
+    const API_URL = `${BASE_API_URL}/${MtrWSRoute.CONSULTAR_MTR}/${mtr}`;
 
     /** Modelagem da requisição HTTP */
     const options: MtrWSType.httpModel.request = {
@@ -97,16 +97,16 @@ async function getMtrData(
             Authorization: AUTH_TOKEN,
         },
         method: "GET",
-        body: "",
+        body: null,
     };
 
-    const request = new Request(_URL, options);
+    const request = new Request(API_URL, options);
     const response = (await fetch(request)).json();
 
     /** Consumo da API com transformação direta em JSON */
     const result = await response as MtrWSType.httpModel.response;
 
-    return result.objetoResposta as MtrWSType.responseBody.consultarMtr;
+    return result.objetoResposta as MtrWSType.responseConfig.consultarMTR;
 }
 
 // Consumo da função
@@ -127,6 +127,7 @@ import {
     type MtrWSType,
 } from "@stallone-dev/types-mtr-web-service/";
 
+/** Interface inetermediária para controle das requisições */
 interface internalRequest<T_request> {
     method: "POST" | "GET";
     pathString?: string;
@@ -166,7 +167,7 @@ abstract class ApiRequest {
                 Authorization: auth ?? "",
             },
             method: method,
-            body: JSON.stringify(body ?? ""),
+            body: JSON.stringify(body),
         };
 
         const request = new Request(_URL, options);
@@ -177,7 +178,7 @@ abstract class ApiRequest {
 
         /** Verificação dos erros internos da API */
         if (result.erro !== false) {
-            throw new Error(String(result.erro));
+            throw new Error(String(await result?.erro));
         }
 
         /** Retorno somente do resultado da requisição */
@@ -187,6 +188,6 @@ abstract class ApiRequest {
     /**
      * Abstração do consumo da função 'makeRequest'
      */
-    public abstract getResult(): Promise<unknown>;
+    public abstract getResult(): unknown;
 }
 ```
