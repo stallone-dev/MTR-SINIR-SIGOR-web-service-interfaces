@@ -1,49 +1,51 @@
+/*
+    This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
 import type * as MTR_ from "./internal/mtr.ts";
 import type * as RESIDUO_ from "./internal/residuos.ts";
 import type * as AUTH_ from "./auth.ts";
 
 export type {
-    aceitarAlteracaoRecebimento,
-    cancelarLoteMtr,
-    cancelarMtr,
-    consultarAcondicionamentoPorEstadoFisico,
-    consultarClassesPorCodIbama,
-    consultarMtr,
+    aceitarAlteracaoRecebimentoMTR,
+    cancelarLoteMTR,
+    cancelarMTR,
+    consultarAcondicionamentosParaEstadoFisico,
+    consultarClassesParaCodIBAMA,
+    consultarMTR,
     downloadCDF,
     downloadMTR,
-    gerarCdf,
-    gerarLoteMtr,
-    gerarToken,
+    gerarAuthToken,
+    gerarCDF,
+    gerarLoteMTR,
+    gerarMTRComplementar,
     listarAcondicionamentos,
     listarClassesResiduos,
     listarEstadosFisicos,
     listarResiduos,
     listarTratamentos,
     listarUnidadesMedida,
-    receberLoteMtr,
-    retornaManifestoSeuCodigo,
-    salvarManifestoComplementar,
-    solicitarAlteracaoRecebimento,
+    receberLoteMTR,
+    retornaMTRsPorSeuCodigo,
+    solicitarAlteracaoRecebimentoMTR,
 };
 
 /** Token de acesso para utilização nas APIs */
-type gerarToken = AUTH_.token;
+type gerarAuthToken = AUTH_.token;
 /** Buffer de bytes contendo o PDF do MTR */
 type downloadMTR = ArrayBuffer;
 /** Buffer de bytes contendo o PDF do CDF */
 type downloadCDF = ArrayBuffer;
 /** Confirmação do resultado do pedido de cancelamento */
-type cancelarMtr = string;
+type cancelarMTR = string;
 /** Confirmação do resultado do pedido de cancelamento @SIGOR_ONLY */
-type cancelarLoteMtr = string[];
+type cancelarLoteMTR = string[];
 
 /**
- * Interface para requisição de MTRs pelo 'seuCodigo"
+ * Interface de retorno de MTRs pelo "seuCodigo"
  * @SIGOR_ONLY
  */
-interface retornaManifestoSeuCodigo extends consultarMtr {}
-
-// Consultas para levantamento das classificaões IBAMA
+interface retornaMTRsPorSeuCodigo extends consultarMTR {}
 
 /**
  * Listagem dos resíduos conforme classificação IBAMA
@@ -78,27 +80,23 @@ interface listarClassesResiduos
 interface listarTratamentos
     extends Omit<RESIDUO_.tratamento[], "traCodigoNovo"> {}
 
-// Outras consultas para levantamento de classificações IBAMA
-
 /**
  * Listagem das classes válidas para o resíduo específico
  */
-interface consultarClassesPorCodIbama
+interface consultarClassesParaCodIBAMA
     extends Required<RESIDUO_.codigoIbama[]> {}
 
 /**
  * Listagem dos acondicionamentos permitidos por estado físico
  */
-interface consultarAcondicionamentoPorEstadoFisico
+interface consultarAcondicionamentosParaEstadoFisico
     extends Required<RESIDUO_.acondicionamento[]> {}
-
-// Resultados de requisições de comando enviados
 
 /**
  * Resultado da geração de manifesto complementar
  * @SISGR_ONLY
  */
-interface salvarManifestoComplementar {
+interface gerarMTRComplementar {
     restResponseValido: boolean;
     restResponseMensagem: null | string;
     manifestoComplementar: string;
@@ -121,7 +119,7 @@ interface salvarManifestoComplementar {
 /**
  * Interface do retorno obtido ao consultar uma MTR
  */
-interface consultarMtr {
+interface consultarMTR {
     manNumero: string;
     manData: number;
     manResponsavel: string;
@@ -152,30 +150,37 @@ interface consultarMtr {
     parceiroArmazenadorTemporario: {
         parCodigo: number | null;
         parDescricao: string;
-        parCnpj: string;
+        parCnpj: string | null;
     };
     situacaoManifesto: {
         simCodigo: number;
         simDescricao: string;
         simOrdem: number;
-        simDataRecebimento: string;
+        simDataRecebimento?: string; // Específico SINIR
     };
-    dataRecebimentoAT: string;
-    listaManifestoResiduo: MTR_.listaDeResiduos[];
-    cdfNumero: number | null;
-    manNumeroEstadual: string;
+    manNumeroEstadual: string | null;
+    listaManifestoResiduo: MTR_.consultalistaDeResiduos[];
+
+    cdfNumero?: number | null; // Específico SINIR
+    dataRecebimentoAT?: string; // Específico SINIR
+
+    manResponsavelRecebimento?: string | null; // Específico SIGOR
+    manDataRecebimentoArmazenamentoTemporario?: string | null; // Específico SIGOR
+    manDataRecebimentoDestinador?: string | null; // Específico SIGOR
+    cdfCodigo?: number | null; // Específico SIGOR
 }
 
 /**
  * Resultado da geração de um lote de MTRs
  */
-interface gerarLoteMtr {
+interface gerarLoteMTR {
     restResponseValido: boolean;
     restResponseMensagem: string;
     codigoGerado: number;
     manifestoCodigoEstadual: string | null;
     manifestoNumeroEstadual: string | null;
     manifestoNumeroNacional: string;
+
     possuiArmazenamentoTemporario: boolean | null;
     armazenadorTemporario: string | null;
     nomeResponsavel: string;
@@ -198,7 +203,7 @@ interface gerarLoteMtr {
     ufOrigemMtr: string | null;
     tipoManifesto: string | null;
     observacoes: string;
-    listaManifestoResiduos: MTR_.listaDeResiduos[];
+    listaManifestoResiduos: MTR_.controlelistaDeResiduos[];
     erroNacional: boolean;
     mensagemErroNacional: string | null;
 }
@@ -206,7 +211,7 @@ interface gerarLoteMtr {
 /**
  * Resultado do processo de recebimento da MTR
  */
-interface receberLoteMtr {
+interface receberLoteMTR {
     restResponseValido: boolean;
     restResponseMensagem: string;
     manNumero: string;
@@ -214,8 +219,8 @@ interface receberLoteMtr {
     placaVeiculo: string;
     dataRecebimento: number;
     nomeResponsavelRecebimento: string;
-    observacoes: string;
-    listaManifestoResiduo: MTR_.listaDeResiduos[];
+    observacoes: string | null;
+    listaManifestoResiduo: MTR_.controlelistaDeResiduos[];
     erroNacional: boolean;
     mensagemErroNacional: string | null;
 }
@@ -223,16 +228,16 @@ interface receberLoteMtr {
 /**
  * Resultado do processo de geração do CDF a partir das MTRs ou gerador indicados
  */
-interface gerarCdf {
+interface gerarCDF {
     restResponseValido: boolean;
     restResponseMensagem: string;
-    codigoGerado: number;
+    codigoGerado: string;
     cerDataInicial: number;
     cerDataFinal: number;
     nomeResponsavel: string;
     parceiroDestinador: string;
     cnpjDestinador: string;
-    cerObservacao: string;
+    cerObservacao: string | null;
     listaParceiroGerador: {
         restResponseValido: boolean;
         restResponseMensagem: string;
@@ -250,7 +255,7 @@ interface gerarCdf {
 /**
  * Retorno da solicitação de alteração de recebimento do MTR
  */
-interface solicitarAlteracaoRecebimento {
+interface solicitarAlteracaoRecebimentoMTR {
     restResponseValido: boolean;
     restResponseMensagem: string;
     codigoGerado: string | null;
@@ -261,14 +266,14 @@ interface solicitarAlteracaoRecebimento {
         restResponseMensagem: string | null;
         codigoGerado: string | null;
         manNumero: string;
-        listaManifestoResiduo: MTR_.listaDeResiduos[];
+        listaManifestoResiduo: MTR_.controlelistaDeResiduos[];
     };
 }
 
 /**
  * Retorno da conclusão do pedidod e alteração de recebimento do MTR
  */
-interface aceitarAlteracaoRecebimento {
+interface aceitarAlteracaoRecebimentoMTR {
     restResponseValido: boolean;
     restResponseMensagem: string;
     parCodigoGerador: string;
