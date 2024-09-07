@@ -1,10 +1,10 @@
 {
     "name": "@stallone-dev/types-mtr-web-service",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "exports": "./mod.ts",
 
     "publish": {
-        "exclude": [".editorconfig", ".github", ".vscode", ""]
+        "exclude": [".editorconfig", ".github", ".vscode"]
     },
 
     "lint": {
