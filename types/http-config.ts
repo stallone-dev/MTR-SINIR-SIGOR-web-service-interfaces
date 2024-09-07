@@ -83,5 +83,5 @@ interface request {
         "Content-Type": "application/json";
         Authorization: auth.token | "";
     };
-    body: unknown;
+    body: string | null;
 }
