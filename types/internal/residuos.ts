@@ -1,3 +1,7 @@
+/*
+    This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
 export type {
     acondicionamento,
     classe,
@@ -26,7 +30,6 @@ interface classe {
     claCodigo: number;
     claDescricao?: string;
     claResolução?: string;
-    claCodigoNovo?: number;
 }
 
 /**
@@ -44,7 +47,6 @@ interface unidadeDeMedida {
 interface tratamento {
     traCodigo: number;
     traDescricao?: string;
-    traCodigoNovo?: number;
 }
 
 /**
@@ -82,4 +84,5 @@ interface codigoONU {
     marClasseRisco?: string;
     marNomeEmbarque?: string;
     greCodigo?: 1 | 2 | 3 | 4;
+    greDescricao?: string;
 }
