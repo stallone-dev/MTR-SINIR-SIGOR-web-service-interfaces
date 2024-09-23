@@ -9,16 +9,16 @@ Baseado na versão: `SIGOR - 1.15.0 - 21/08/24`
 
 Contém:
 
-- Lista de **URLs-base de produção** da API, compiladas no `MtrWSBaseURL`
+- Lista de **URLs-base** da API, compiladas no `MtrWSBaseURL`
 - Lista de rotas **REST** da API, compiladas no `MtrWSRoute`
 - Conjunto de **interfaces** da API, reunidas no `MtrWSType`, contendo:
 
-|        Categoria         | Interface                  |
-| :----------------------: | :------------------------- |
-|       Autenticação       | `MtrWSType.auth`           |
-|     Interfaces HTTP      | `MtrWSType.httpModel`      |
-| Interfaces de requisição | `MtrWSType.requestConfig`  |
-|  Interfaces de resposta  | `MtrWSType.responseConfig` |
+|        Categoria         | Interface                 |
+| :----------------------: | :------------------------ |
+|       Autenticação       | `MtrWSType.auth`          |
+|     Interfaces HTTP      | `MtrWSType.httpModel`     |
+| Interfaces de requisição | `MtrWSType.requestModel`  |
+|  Interfaces de resposta  | `MtrWSType.responseModel` |
 
 ## Instalação
 
@@ -86,7 +86,7 @@ async function getMtrData(
     mtr: string,
     AUTH_TOKEN: MtrWSType.auth.token,
     BASE_API_URL: MtrWSBaseURL,
-): Promise<MtrWSType.responseConfig.consultarMTR> {
+): Promise<MtrWSType.responseModel.consultarMTR> {
     /** Modelagem da URL da API */
     const API_URL = `${BASE_API_URL}/${MtrWSRoute.CONSULTAR_MTR}/${mtr}`;
 
@@ -106,7 +106,7 @@ async function getMtrData(
     /** Consumo da API com transformação direta em JSON */
     const result = await response as MtrWSType.httpModel.response;
 
-    return result.objetoResposta as MtrWSType.responseConfig.consultarMTR;
+    return result.objetoResposta as MtrWSType.responseModel.consultarMTR;
 }
 
 // Consumo da função

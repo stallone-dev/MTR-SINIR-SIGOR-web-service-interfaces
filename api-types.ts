@@ -25,11 +25,11 @@ export type {
      * @module
      * @version 1.15.0 - SIGOR ago/24
      */
-    REQUEST_BODY_ as requestConfig,
+    REQUEST_BODY_ as requestModel,
     /**
      * Interfaces específicas do "objetoResposta" da API
      * @module
      * @version 1.15.0 - SIGOR ago/24
      */
-    RESPONSE_BODY_ as responseConfig,
+    RESPONSE_BODY_ as responseModel,
 };

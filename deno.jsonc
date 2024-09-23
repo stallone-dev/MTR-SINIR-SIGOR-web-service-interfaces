@@ -1,0 +1,63 @@
+/*
+My default DenoJS settings file from general projects
+Version: 2024/09
+
+Github Gist: https://gist.github.com/stallone-dev/285b551c5368ad15185f66aecc0a6917
+
+Based on https://docs.deno.com/runtime/fundamentals/configuration/
+*/
+
+{
+    // ======= JSR publish area =======
+
+    "name": "@stallone-dev/types-mtr-web-service",
+    "version": "0.6.0",
+    "exports": "./mod.ts",
+    "license": "MPL-2.0",
+
+    "publish": {
+        "exclude": [".editorconfig", ".vscode", ".github"]
+    },
+
+    // ======= Source code standardization area =======
+
+    // Main formatter for source code styling
+    // For more details see https://docs.deno.com/runtime/fundamentals/linting_and_formatting/#available-options
+    "fmt": {
+        "lineWidth": 80,
+        "indentWidth": 4,
+        "useTabs": false,
+        "semiColons": true,
+        "singleQuote": false,
+        "proseWrap": "preserve"
+    },
+
+    // Main linter for source code standardization
+    // For more details see https://lint.deno.land/?q=&all=on
+    "lint": {
+        "exclude": ["!*.ts"],
+        "rules": {
+            "tags": ["recommended"],
+            "include": [
+                "eqeqeq",
+                "explicit-function-return-type",
+                "no-await-in-loop",
+                "no-boolean-literal-for-arguments",
+                "no-console",
+                "no-const-assign",
+                "no-eval",
+                "no-external-import",
+                "no-inferrable-types",
+                "no-non-null-assertion",
+                "no-self-compare",
+                "no-sparse-arrays",
+                "no-sync-fn-in-async-fn",
+                "no-throw-literal",
+                "no-undef",
+                "single-var-declarator",
+                "triple-slash-reference",
+                "verbatim-module-syntax"
+            ]
+        }
+    }
+}

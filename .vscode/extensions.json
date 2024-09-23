@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "denoland.vscode-deno",
+        "editorconfig.editorconfig",
+        "ms-vscode.vscode-typescript-next",
+        "christian-kohler.path-intellisense"
+    ]
+}
