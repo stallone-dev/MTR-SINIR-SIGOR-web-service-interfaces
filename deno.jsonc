@@ -11,12 +11,12 @@ Based on https://docs.deno.com/runtime/fundamentals/configuration/
     // ======= JSR publish area =======
 
     "name": "@stallone-dev/types-mtr-web-service",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "exports": "./mod.ts",
     "license": "MPL-2.0",
 
     "publish": {
-        "exclude": [".editorconfig", ".vscode", ".github"]
+        "exclude": [".editorconfig", ".vscode", ".github"],
     },
 
     // ======= Source code standardization area =======
@@ -29,7 +29,7 @@ Based on https://docs.deno.com/runtime/fundamentals/configuration/
         "useTabs": false,
         "semiColons": true,
         "singleQuote": false,
-        "proseWrap": "preserve"
+        "proseWrap": "preserve",
     },
 
     // Main linter for source code standardization
@@ -56,8 +56,8 @@ Based on https://docs.deno.com/runtime/fundamentals/configuration/
                 "no-undef",
                 "single-var-declarator",
                 "triple-slash-reference",
-                "verbatim-module-syntax"
-            ]
-        }
-    }
+                "verbatim-module-syntax",
+            ],
+        },
+    },
 }

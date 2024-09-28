@@ -33,9 +33,9 @@ export type {
 /** Token de acesso para utilização nas APIs */
 type gerarAuthToken = AUTH_.token;
 /** Buffer de bytes contendo o PDF do MTR */
-type downloadMTR = ArrayBuffer;
+type downloadMTR = ReadableStream<Uint8Array>;
 /** Buffer de bytes contendo o PDF do CDF */
-type downloadCDF = ArrayBuffer;
+type downloadCDF = ReadableStream<Uint8Array>;
 /** Confirmação do resultado do pedido de cancelamento */
 type cancelarMTR = string;
 /** Confirmação do resultado do pedido de cancelamento @SIGOR_ONLY */
